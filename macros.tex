@@ -1,0 +1,112 @@
+% \newcommand{\wrap}[1]{\ensuremath{{#1}}\xspace}
+\newcommand{\AlgoFont}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\ClassFont}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\FunctionFont}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\PartyFont}[1]{\ensuremath{\mathsf{#1}}}
+\newcommand{\ProtocolFont}[1]{\ensuremath{\mathsf{#1}}}
+\newcommand{\AdvFont}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\CodeFont}[1]{\ensuremath{\mathtt{#1}}}
+\newcommand{\SetFont}[1]{\ensuremath{\mathit{#1}}}
+
+% Generic
+\newcommand{\TodoSuper}[2][]{\todo[inline, color=green!80, #1]{#2}}
+\newcommand{\romanNumbering}[1]{\textsuperscript{(\romannum{#1})}}
+
+% Parenthesis
+\renewcommand{\left}{\mleft}
+\renewcommand{\right}{\mright}
+% https://tex.stackexchange.com/questions/225562/declarepaireddelimiter-with-left-and-right
+\newcommand{\DeclareAutoPairedDelimiter}[3]{
+  \expandafter\DeclarePairedDelimiter\csname Auto\string#1\endcsname{#2}{#3}%
+  \begingroup\edef\x{\endgroup
+    \noexpand\DeclareRobustCommand{\noexpand#1}{%
+      \expandafter\noexpand\csname Auto\string#1\endcsname*}}%
+  \x
+}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\round}{\lfloor}{\rceil}
+\DeclarePairedDelimiter{\parr}{(}{)}
+\DeclarePairedDelimiter{\pars}{[}{]}
+\DeclarePairedDelimiter{\parc}{\{}{\}}
+\DeclarePairedDelimiter{\abs}{\vert}{\vert}
+\DeclarePairedDelimiter{\card}{\vert}{\vert}
+\DeclarePairedDelimiter{\length}{\vert}{\vert}
+\DeclarePairedDelimiter{\inprod}{\langle}{\rangle}
+\DeclarePairedDelimiter{\parity}{\langle}{\rangle}
+\DeclarePairedDelimiter{\at}{.}{\vert}
+% https://tex.stackexchange.com/questions/45713/creating-a-large-such-that-symbol
+\newcommand{\given}{\;\ifnum\currentgrouptype=16 \middle\fi\vert\;}
+
+% Asymptotics
+\DeclareMathOperator{\negl}{negl}
+\DeclareMathOperator{\owhl}{owhl}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\polylog}{polylog}
+% \DeclareMathOperator{\superpoly}{superpoly}
+\DeclareMathOperator{\strictlyFaster}{\omega}
+\DeclareMathOperator{\faster}{\Omega}
+\DeclareMathOperator{\equallyFast}{\Theta}
+\DeclareMathOperator{\slower}{\mathcal{O}}
+\DeclareMathOperator{\strictlySlower}{\mathrm{o}}
+
+% Parameters & Notation
+\newcommand{\n}{n}
+%_\newcommand{\secpar}{{\glssymbol{secpar}}}
+\newcommand{\barsecpar}{\hat{\secpar}}
+
+% Sets
+\newcommand{\bit}{\parc*{\false,\true}}
+\newcommand{\bits}{\bit^*}
+\newcommand{\secparbits}[1][]{\bit^{#1\secpar}}
+% \newcommand{\barsecparbits}[1][]{\bit^{#1 \barsecpar}}
+% \newcommand{\bool}{\parc*{\false,\true}}
+\newcommand{\true}{1}
+\newcommand{\false}{0}
+\newcommand{\emptyString}{\varepsilon}
+\newcommand{\mulgroup}[1]{\Z_{#1}^\times}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+% Complexity Classes
+\renewcommand{\P}{\AlgoFont{P}}
+\newcommand{\NP}{\AlgoFont{NP}}
+\newcommand{\DTIME}{\AlgoFont{DTIME}}
+\newcommand{\NC}[1][]{\ClassFont{NC}^{#1}}
+
+% Operations
+% \newcommand{\BinDist}[1]{\operatorname{Bin}\parr*{#1}}
+% \renewcommand{\mod}{\operatorname{mod}}
+% \newcommand{\concat}{\mathopen{}\operatorname{||}\mathclose{}}
+% \renewcommand{\d}{\mathrm{d}}
+\newcommand{\xor}{\oplus}
+\newcommand{\BigXOR}{\bigoplus}
+\newcommand{\cupdot}{\mathbin{\mathaccent\cdot\cup}}
+% \newcommand{\bigcupdot}{\mathop{\cdot\bigcup}}
+\newcommand{\bigcupdot}{\mathop{\hspace{8.8pt}\cdot \hspace{-8.8pt}\bigcup\hspace{5pt}}}
+% \DeclareMathOperator{\bigcupdot}{\hspace{8.8pt}\cdot \hspace{-8.8pt}\bigcup\limits}
+
+% Relations
+\newcommand{\isequal}{\overset{?}{=}}
+% \newcommand{\implies}{\Rightarrow}
+\newcommand{\nimplies}{\centernot\implies}
+% \newcommand{\cind}{\overset{c}{\approx}}
+\newcommand{\sind}{\overset{s}{\approx}}
+%\newcommand{\UCRealize}{\overset{\mathrm{UC}}{\geq}}
+\newcommand{\isomorphic}{\cong}
+\newcommand{\pind}{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+% Randomness
+\renewcommand{\Pr}[2][]{\operatorname{Pr}_{#1}\pars*{#2}}
+\newcommand{\Ex}[1]{\operatorname{E}\pars*{#1}}
+\newcommand{\Var}[1]{\operatorname{Var}\pars*{#1}}
+\newcommand{\getsr}{\overset{\$}{\gets}}
+% \newcommand{\uniform}[1]{\mathcal{U}\parr*{#1}}
+
+
+%% Conditional variables, since our submission has to be anonymous.
+\newcommand{\ifcameraready}{\iffalse}
+\newcommand{\ifcgconstruction}{\iftrue}
+\newcommand{\ifcapitalize}{\iftrue}

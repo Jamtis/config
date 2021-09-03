@@ -1,0 +1,340 @@
+\ifbeamer{
+    % \setbeameroption{show notes on second screen = right}
+}{
+    % Geometry
+    \geometry{
+        a4paper,
+        textwidth=15cm,
+        textheight=24cm,
+        heightrounded,
+        hratio=1:1,
+        vratio=2:3,
+    }
+    
+    \ifllncspaper{
+        % We need page numbers according to https://crypto.iacr.org/2021/callforpapers.html
+        \pagestyle{plain}
+    }{
+        \newtheoremstyle{break} % name
+          {}                    % Space above, empty = `usual value'
+          {}                    % Space below
+          {}                    % Body font
+          {}                    % Indent amount (empty = no indent, \parindent = para indent)
+          {\bfseries}           % Thm head font
+          {}                    % Punctuation after thm head
+          {\newline}            % Space after thm head: \newline = linebreak
+          {}                    % Thm head spec
+        
+        \theoremstyle{break}
+        \newtheorem{theorem}{Theorem}[section]
+        \newtheorem{remark}[theorem]{Remark}
+        \newtheorem{corollary}[theorem]{Corollary}
+        \newtheorem{lemma}[theorem]{Lemma}
+        \newtheorem{definition}[theorem]{Definition}
+        \newtheorem{construction}[theorem]{Construction}
+        \newtheorem{example}{Example}[theorem]
+        \newtheorem{observation}{Observation}
+        %\newtheorem{notation}[theorem]{Notation}
+        %\crefname{observation}{observation}{observations}
+        \Crefname{observation}{Observation}{Observations}
+    }
+    \declaretheorem[name=Notation]{notation}
+    \declaretheorem[name=Observation]{observation}
+    \let\claim\relax
+    \declaretheorem[name=Claim]{claim}
+}
+
+
+%% Todos
+\ifllncspaper{
+    \ifoptiondraft{% Larger margins to have todos readable
+        \paperwidth=\dimexpr \paperwidth + 10cm\relax
+        \oddsidemargin=\dimexpr\oddsidemargin + 5cm\relax
+        \evensidemargin=\dimexpr\evensidemargin + 5cm\relax
+        \marginparwidth=\dimexpr \marginparwidth + 5cm\relax
+    }{}
+    \ifluatex \else
+        \renewcommand{\marginpar}{\marginnote}
+    \fi
+}{
+    \presetkeys{todonotes}{inline}{}
+}
+
+
+%% environments
+\newenvironment{nalign}{
+    \begin{equation}
+        \begin{aligned}
+}{
+        \end{aligned}
+    \end{equation}
+    \ignorespacesafterend
+}
+
+\newenvironment{sitemize}{
+    \begin{itemize}[leftmargin=3.5mm]
+}{
+    \end{itemize}
+    \ignorespacesafterend
+}
+
+\makeatletter
+\let\oldframetitle\mdf@@frametitle@use
+\let\mdf@@frametitle@use\relax
+\providecommand{\mdf@@frametitle@use}{}
+\makeatother
+\ifdraft{
+    \newcommand{\newcontdbox}[2]{
+        \newenvironment{#1}[1]{
+            \let\sitem\item
+            \vspace{2mm}
+            \noindent
+            \hrule
+            \vspace{2mm}
+            \centerline{#2 ##1}
+            \noindent
+        }{
+            \vspace{2mm}
+            \hrule
+            \vspace{2mm}
+            \ignorespacesafterend
+        }
+    }
+}{
+    \newcommand{\newcontdbox}[2]{
+        \newenvironment{#1}[1]{
+            \providecommand{\sitem}{}
+            % \tolerance=6500
+            \tolerance=99999
+            \begin{mdframed}[
+                frametitle={#2 ##1 (cont'd)},
+                repeatframetitle=true,
+                frametitlealignment=\center,
+                frametitlebelowskip=0,
+                frametitlefont=\textrm,
+                innertopmargin=2mm,
+                innerleftmargin=1mm,
+                innerrightmargin=1mm,
+                everyline=true,
+                needspace=6cm
+            ]
+                \mdfsubtitle[
+                    subtitleaboveskip=0,
+                    subtitlebelowskip=0,
+                    subtitleinneraboveskip=0,
+                    subtitleinnerbelowskip=1mm,
+                    subtitlefont=\textrm
+                ]{#2 ##1}
+        }{
+            \end{mdframed}
+            \ignorespacesafterend
+        }
+    }
+}
+\newcontdbox{functionalitybox}{Functionality}
+\newcontdbox{protocolbox}{Protocol}
+\newcontdbox{simulatorbox}{Simulator for}
+
+
+%% lists
+\ifbeamer{}{
+    \renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+    \setlist{noitemsep, topsep=0pt}
+}
+
+
+%% tikz
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes.callouts}
+\tikzset{
+    square/.style={rectangle, minimum width=.8cm, minimum height=.8cm, draw=black!60},
+    % party/.style={rectangle, minimum width=.8cm, minimum height=.8cm, draw=black!60, rounded corners=.2cm},
+    party/.style={circle, minimum size=.8cm, draw=black!60},
+    func/.style={rectangle, draw=black, minimum width = .8cm, minimum height = .8cm},
+    title/.style={rectangle, minimum width=.8cm, minimum height=.8cm},
+    label/.style={rectangle, minimum width=.8cm, minimum height=.8cm},
+    dummyicon/.style={circle, inner sep=0.05cm, minimum size=.8cm, draw=black!60, dotted, line width=.03cm},
+    partyset/.style={circle, inner sep=0.05cm, minimum size=.8cm, draw=black!60, densely dashed, line width=.03cm},
+    partyicon/.style={circle, inner sep=0.05cm, minimum size=.8cm, draw=black!60, fill=white},
+    placeholder/.style={circle, inner sep=0.05cm, minimum size=.8cm},
+    advicon/.style={circle, inner sep=0.05cm, minimum size=.8cm, draw=black!60, double},
+    smallpartyicon/.style={circle, inner sep=0.05cm, minimum size=.08cm, draw=black!60},
+    line/.style={densely dotted, line width=.02cm},
+    functionalitybox/.style={draw=black!70,fill=black!70, text=white, minimum width=1cm,minimum height=.6cm}
+}
+
+
+%% Print URLs not in Typewriter Font
+\def\UrlFont{\rm}
+
+
+%% GLS
+\newlength\glsnamewidth
+\newlength\glssymbolwidth
+\settowidth{\glsnamewidth}{\textbf{Name ................}}
+\settowidth{\glssymbolwidth}{\textbf{Symbol}}
+\newglossarystyle{symbolnamedesc}{%
+  \setlength{\glsdescwidth}{\linewidth-\glsnamewidth-\glssymbolwidth-6\tabcolsep}%
+  \renewenvironment{theglossary}%
+    {\begin{longtable}{p{\glssymbolwidth}p{\glsnamewidth}p{\glsdescwidth}}}%
+    {\end{longtable}}%
+ \renewcommand*{\glossaryheader}{%
+    \bfseries Symbol
+   & \bfseries Name
+   & \bfseries Description
+   \tabularnewline
+   \midrule
+   \tabularnewline\endhead}%
+  \renewcommand*{\glsgroupheading}[1]{}%
+  \renewcommand{\glossentry}[2]{%
+    \glossentrysymbol{##1} &
+    \glstarget{##1}{\glossentryname{##1}} &
+    \glossentrydesc{##1}\tabularnewline
+  }%
+  \renewcommand{\subglossentry}[3]{\glossentry{##2}{##3}}%
+  \renewcommand*{\glsgroupskip}{}%
+}
+
+\newglossarystyle{acrodesc}{%
+  \setlength{\glsdescwidth}{\linewidth-\glsnamewidth-3\tabcolsep}%
+  \renewenvironment{theglossary}%
+    {\begin{longtable}{p{\glsnamewidth}p{\glsdescwidth}}}%
+    {\end{longtable}}%
+ \renewcommand*{\glossaryheader}{%
+     \bfseries Acronym
+   & \bfseries Description
+   \tabularnewline
+   \midrule
+   \tabularnewline\endhead}%
+  \renewcommand*{\glsgroupheading}[1]{}%
+  \renewcommand{\glossentry}[2]{%
+    \glstarget{##1}{\glossentryname{##1}} &
+    \glossentrydesc{##1}\tabularnewline
+  }%
+  \renewcommand{\subglossentry}[3]{\glossentry{##2}{##3}}%
+  \renewcommand*{\glsgroupskip}{}%
+}
+\glsdisablehyper
+
+
+%% no \newpage for includes
+\ifbeamer{}{
+	\let\originalinclude\include
+	\renewcommand*{\include}[1]{
+        \begingroup
+		\let\clearpage\relax
+		\originalinclude{#1}
+        \endgroup
+	}
+}
+
+%% square at end of each proof
+\let\doendproof\endproof
+\renewcommand\endproof{~\hfill\qed\doendproof}
+
+
+%% ulem...
+\normalem
+
+
+%% Conditional variables, since our submission has to be anonymous.
+\let\presetifsubmission\ifsubmission
+
+\let\ifsubmission\relax
+\newif\ifsubmission
+
+\ifdraft{
+    \submissionfalse
+}{
+    %\submissiontrue
+    \let\ifsubmission\presetifsubmission
+}
+
+
+%% Equations alignment
+\AtBeginDocument{\setlength\abovedisplayskip{4pt}}
+\AtBeginDocument{\setlength\belowdisplayskip{4pt}}
+
+
+%% Typography
+\renewcommand*{\bibfont}{\small}
+
+
+%% Table
+\def\arraystretch{1.2}
+\AtBeginDocument{\setlength{\tabcolsep}{0.5em}}
+
+
+%% save compile time
+\ifdraft{
+    % this may cause some reference to to be resolved correctly
+    \let\import\include
+}{
+    \let\import\input
+}
+
+%% default hyper setup
+\ifsubmission
+    \hypersetup{
+        linktoc=all,
+        pdfauthor={},
+        pdftitle={Anonymous submission},
+        pdfsubject={},
+        pdfkeywords={}
+    }
+\fi
+\setcounter{tocdepth}{2}
+
+
+%% hyper-xr
+\makeatletter
+\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+  \typeout{(#1)}
+  \@addtofilelist{#1}
+  \IfFileExists{#1}{}{\typeout{No file #1.}}
+}
+\makeatother
+
+\newcommand*{\myexternaldocument}[1]{%
+    \externaldocument{#1}%
+    \addFileDependency{#1.tex}%
+    \addFileDependency{#1.aux}%
+}
+
+
+%% my TOC
+\newcommand{\mytoc}{
+    \begingroup
+        \let\clearpage\relax
+        \let\chapter\section
+        \def\contentsname{Contents}
+        \tableofcontents
+    \endgroup
+}
+
+
+%% my maketitle
+\newcommand{\mymaketitle}{
+    \begingroup
+        \let\oldaddcontentsline\addcontentsline
+        \renewcommand*{\addcontentsline}[3]{%
+            \ifstrequal{##1}{toc}{%
+                \ifstrequal{##2}{author}{}{%
+                    \ifstrequal{##2}{title}{}{%
+                        \oldaddcontentsline{##1}{##2}{##3}
+                    }
+                }
+            }{%
+                \oldaddcontentsline{##1}{##2}{##3}
+            }
+        }
+        %\let\addtocontents\relax
+        \maketitle
+    \endgroup
+}
+
+
+%% Typography
+\renewcommand*{\bibfont}{\small}
