@@ -92,52 +92,33 @@
 \let\mdf@@frametitle@use\relax
 \providecommand{\mdf@@frametitle@use}{}
 \makeatother
-\ifdraft{
-    \newcommand{\newcontdbox}[2]{
-        \newenvironment{#1}[1]{
-            \let\sitem\item
-            \vspace{2mm}
-            \noindent
-            \hrule
-            \vspace{2mm}
-            \centerline{#2 ##1}
-            \noindent
-        }{
-            \vspace{2mm}
-            \hrule
-            \vspace{2mm}
-            \ignorespacesafterend
-        }
-    }
-}{
-    \newcommand{\newcontdbox}[2]{
-        \newenvironment{#1}[1]{
-            \providecommand{\sitem}{}
-            % \tolerance=6500
-            \tolerance=99999
-            \begin{mdframed}[
-                frametitle={#2 ##1 (cont'd)},
-                repeatframetitle=true,
-                frametitlealignment=\center,
-                frametitlebelowskip=0,
-                frametitlefont=\textrm,
-                innertopmargin=2mm,
-                innerleftmargin=1mm,
-                innerrightmargin=1mm,
-                everyline=true,
-                needspace=6cm
-            ]
-                \mdfsubtitle[
-                    subtitleaboveskip=0,
-                    subtitlebelowskip=0,
-                    subtitleinneraboveskip=0,
-                    subtitleinnerbelowskip=1mm,
-                    subtitlefont=\textrm
-                ]{#2 ##1}
-        }{
-            \end{mdframed}
-            \ignorespacesafterend
-        }
+\newcommand{\newcontdbox}[2]{
+    \newenvironment{#1}[1]{
+        \providecommand{\sitem}{}
+        % \tolerance=6500
+        \tolerance=99999
+        \begin{mdframed}[
+            frametitle={#2 ##1 (cont'd)},
+            repeatframetitle=true,
+            frametitlealignment=\center,
+            frametitlebelowskip=0,
+            frametitlefont=\textrm,
+            innertopmargin=2mm,
+            innerleftmargin=1mm,
+            innerrightmargin=1mm,
+            everyline=true,
+            needspace=6cm
+        ]
+            \mdfsubtitle[
+                subtitleaboveskip=0,
+                subtitlebelowskip=0,
+                subtitleinneraboveskip=0,
+                subtitleinnerbelowskip=1mm,
+                subtitlefont=\textrm
+            ]{#2 ##1}
+    }{
+        \end{mdframed}
+        \ignorespacesafterend
     }
 }
 \newcontdbox{functionalitybox}{Functionality}
