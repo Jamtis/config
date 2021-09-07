@@ -262,20 +262,6 @@
 \normalem
 
 
-%% Conditional variables, since our submission has to be anonymous.
-\let\presetifsubmission\ifsubmission
-
-\let\ifsubmission\relax
-\newif\ifsubmission
-
-\ifdraft{
-    \submissionfalse
-}{
-    %\submissiontrue
-    \let\ifsubmission\presetifsubmission
-}
-
-
 %% Equations alignment
 \AtBeginDocument{\setlength\abovedisplayskip{4pt}}
 \AtBeginDocument{\setlength\belowdisplayskip{4pt}}
