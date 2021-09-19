@@ -267,6 +267,9 @@
 
 %% Typography
 \renewcommand*{\bibfont}{\small}
+\ifbeamer{
+    \AtBeginBibliography{\fontsize{3}{3}}
+}{}
 
 
 %% Table
