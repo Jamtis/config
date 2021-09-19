@@ -1,10 +1,26 @@
 %% Conditional variables, since our submission has to be anonymous.
-\newcommand{\ifcameraready}{\iftrue}
-\newcommand{\ifeprint}{\iftrue}
-\newcommand{\ifcgconstruction}{\iftrue}
-\newcommand{\ifcapitalize}{\iftrue}
-\newcommand{\ifframedfunctionality}{\iftrue}
-
+\makeatletter
+\@ifundefined{ifsubmission}{
+    \newif\ifsubmission
+    \submissionfalse
+}{
+}
+\@ifundefined{ifeprint}{
+    \newif\ifsubmission
+    \eprinttrue
+}{
+}
+\@ifundefined{ifcameraready}{
+    \newif\ifcameraready
+    \camerareadyfalse
+}{
+}
+\@ifundefined{ifcapitalize}{
+    \newif\ifcapitalize
+    \capitalizetrue
+}{
+}
+\makeatother
 
 %% Geometry
 \ifbeamer{
@@ -244,20 +260,6 @@
 
 %% ulem...
 \normalem
-
-
-%% Conditional variables, since our submission has to be anonymous.
-\let\presetifsubmission\ifsubmission
-
-\let\ifsubmission\relax
-\newif\ifsubmission
-
-\ifdraft{
-    \submissionfalse
-}{
-    %\submissiontrue
-    \let\ifsubmission\presetifsubmission
-}
 
 
 %% Equations alignment
