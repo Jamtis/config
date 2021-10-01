@@ -1,27 +1,3 @@
-%% Conditional variables, since our submission has to be anonymous.
-\makeatletter
-\@ifundefined{ifsubmission}{
-    \newif\ifsubmission
-    \submissionfalse
-}{
-}
-\@ifundefined{ifeprint}{
-    \newif\ifsubmission
-    \eprinttrue
-}{
-}
-\@ifundefined{ifcameraready}{
-    \newif\ifcameraready
-    \camerareadyfalse
-}{
-}
-\@ifundefined{ifcapitalize}{
-    \newif\ifcapitalize
-    \capitalizetrue
-}{
-}
-\makeatother
-
 %% Geometry
 \ifbeamer{
     % \setbeameroption{show notes on second screen = right}

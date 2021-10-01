@@ -28,6 +28,32 @@
         #2
     }
 }
+%% Conditional variables, since our submission has to be anonymous.
+\@ifundefined{ifsubmission}{
+    \newif\ifsubmission
+    \submissionfalse
+}{
+}
+\@ifundefined{ifeprint}{
+    \newif\ifsubmission
+    \eprinttrue
+}{
+}
+\@ifundefined{ifcameraready}{
+    \newif\ifcameraready
+    \camerareadyfalse
+}{
+}
+\@ifundefined{ifcapitalize}{
+    \newif\ifcapitalize
+    \capitalizetrue
+}{
+}
+\@ifundefined{ifnumeric}{
+    \newif\ifnumeric
+    \numerictrue
+}{
+}
 \makeatother
 
 % \usepackage[utf8]{inputenc}
@@ -48,7 +74,11 @@
 %    \usepackage[citestyle=authoryear,style=trad-alpha,giveninits=true,backend=bibtex,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
 %}{
 %    \usepackage[citestyle=authoryear,style=trad-alpha,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
-\usepackage[citestyle=authoryear,style=trad-alpha,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
+\ifnumeric
+    \usepackage[citestyle=numeric,style=numeric,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
+\else
+    \usepackage[citestyle=authoryear,style=trad-alpha,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
+\fi
 %_\usepackage[sort&compress]{natbib}
 %\usepackage[protrusion=true,expansion,babel=true]{microtype}
 \usepackage{dsfont}
