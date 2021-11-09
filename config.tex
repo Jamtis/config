@@ -331,3 +331,11 @@
         \maketitle
     \endgroup
 }
+
+
+%% auto delimiter
+\let\ifdisplay\iffalse
+\everydisplay\expandafter{\let\ifdisplay\iftrue}
+\providecommand{\DeclareAutoPairedDelimiter}[3]{%
+    \DeclarePairedDelimiter{#1}{\ifdisplay\left\fi#2}{\ifdisplay\right\fi#3}
+}

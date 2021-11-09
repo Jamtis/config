@@ -15,17 +15,6 @@
 % Parenthesis
 \providecommand{\left}{\mleft}
 \providecommand{\right}{\mright}
-% https://tex.stackexchange.com/questions/225562/declarepaireddelimiter-with-left-and-right
-%\providecommand{\DeclareAutoPairedDelimiter}[3]{
-%  \expandafter\DeclarePairedDelimiter\csname Auto\string#1\endcsname{#2}{#3}%
-%  \begingroup\edef\x{\endgroup
-%    \noexpand\DeclareRobustCommand{\noexpand#1}{%
-%      \expandafter\noexpand\csname Auto\string#1\endcsname*}}%
-%  \x
-%}
-\providecommand{\DeclareAutoPairedDelimiter}[3]{
-  \DeclarePairedDelimiter{#1}{\ifdisplay\left\fi#2}{\ifdisplay\right\fi#3}
-}
 \DeclareAutoPairedDelimiter{\floor}{\lfloor}{\rfloor}
 \DeclareAutoPairedDelimiter{\ceil}{\lceil}{\rceil}
 \DeclareAutoPairedDelimiter{\round}{\lfloor}{\rceil}
