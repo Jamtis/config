@@ -337,5 +337,5 @@
 \let\ifdisplay\iffalse
 \everydisplay\expandafter{\let\ifdisplay\iftrue}
 \providecommand{\DeclareAutoPairedDelimiter}[3]{%
-    \providecommand{#1}[1]{\ifdisplay\left#2\else#2\fi##1\ifdisplay\right#3\else#3\fi#3}
+    \providecommand{#1}[1]{\ifdisplay\left#2\else#2\fi##1\ifdisplay\right#3\else#3\fi}
 }
