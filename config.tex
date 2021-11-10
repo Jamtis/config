@@ -1,3 +1,16 @@
+% https://tex.stackexchange.com/questions/128797/a-renewcommand-that-does-not-care-if-a-command-is-already-defined
+\makeatletter
+\newcommand*{\declarecommand}{%
+  \@star@or@long\declare@command
+}
+\newcommand*{\declare@command}[1]{%
+  \provide@command{#1}{}%
+  % \let#1\@empty % would be more efficient, but without error checking
+  \renew@command{#1}%
+}
+\makeatother#
+
+
 %% Geometry
 \ifbeamer{
     % \setbeameroption{show notes on second screen = right}
@@ -83,11 +96,11 @@
 \makeatletter
 \let\oldframetitle\mdf@@frametitle@use
 \let\mdf@@frametitle@use\relax
-\providecommand{\mdf@@frametitle@use}{}
+\declarecommand{\mdf@@frametitle@use}{}
 \makeatother
 \newcommand{\newcontdbox}[2]{
     \newenvironment{#1}[1]{
-        \providecommand{\sitem}{}
+        \declarecommand{\sitem}{}
         % \tolerance=6500
         \tolerance=99999
         \begin{mdframed}[
@@ -336,6 +349,6 @@
 %% auto delimiter
 \let\ifdisplay\iffalse
 \everydisplay\expandafter{\let\ifdisplay\iftrue}
-\providecommand{\DeclareAutoPairedDelimiter}[3]{%
-    \providecommand{#1}[1]{\ifdisplay\left#2\else#2\fi##1\ifdisplay\right#3\else#3\fi}
+\declarecommand{\DeclareAutoPairedDelimiter}[3]{%
+    \declarecommand{#1}[1]{\ifdisplay\left#2\else#2\fi##1\ifdisplay\right#3\else#3\fi}
 }

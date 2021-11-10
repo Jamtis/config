@@ -1,20 +1,20 @@
-% \providecommand{\wrap}[1]{\ensuremath{{#1}}\xspace}
-\providecommand{\AlgoFont}[1]{\ensuremath{\mathcal{#1}}}
-\providecommand{\ClassFont}[1]{\ensuremath{\mathrm{#1}}}
-\providecommand{\FunctionFont}[1]{\ensuremath{\mathrm{#1}}}
-\providecommand{\PartyFont}[1]{\ensuremath{\mathsf{#1}}}
-\providecommand{\ProtocolFont}[1]{\ensuremath{\mathsf{#1}}}
-\providecommand{\AdvFont}[1]{\ensuremath{\mathcal{#1}}}
-\providecommand{\CodeFont}[1]{\ensuremath{\mathtt{#1}}}
-\providecommand{\SetFont}[1]{\ensuremath{\mathit{#1}}}
+% \declarecommand{\wrap}[1]{\ensuremath{{#1}}\xspace}
+\declarecommand{\AlgoFont}[1]{\ensuremath{\mathcal{#1}}}
+\declarecommand{\ClassFont}[1]{\ensuremath{\mathrm{#1}}}
+\declarecommand{\FunctionFont}[1]{\ensuremath{\mathrm{#1}}}
+\declarecommand{\PartyFont}[1]{\ensuremath{\mathsf{#1}}}
+\declarecommand{\ProtocolFont}[1]{\ensuremath{\mathsf{#1}}}
+\declarecommand{\AdvFont}[1]{\ensuremath{\mathcal{#1}}}
+\declarecommand{\CodeFont}[1]{\ensuremath{\mathtt{#1}}}
+\declarecommand{\SetFont}[1]{\ensuremath{\mathit{#1}}}
 
 % Generic
-\providecommand{\TodoSuper}[2][]{\todo[inline, color=green!80, #1]{#2}}
-\providecommand{\romanNumbering}[1]{\textsuperscript{(\romannum{#1})}}
+\declarecommand{\TodoSuper}[2][]{\todo[inline, color=green!80, #1]{#2}}
+\declarecommand{\romanNumbering}[1]{\textsuperscript{(\romannum{#1})}}
 
 % Parenthesis
-\providecommand{\left}{\mleft}
-\providecommand{\right}{\mright}
+\declarecommand{\left}{\mleft}
+\declarecommand{\right}{\mright}
 \DeclareAutoPairedDelimiter{\floor}{\lfloor}{\rfloor}
 \DeclareAutoPairedDelimiter{\ceil}{\lceil}{\rceil}
 \DeclareAutoPairedDelimiter{\round}{\lfloor}{\rceil}
@@ -28,7 +28,7 @@
 \DeclareAutoPairedDelimiter{\parity}{\langle}{\rangle}
 \DeclareAutoPairedDelimiter{\at}{.}{\vert}
 % https://tex.stackexchange.com/questions/45713/creating-a-large-such-that-symbol
-\providecommand{\given}{\;\ifnum\currentgrouptype=16 \middle\fi\vert\;}
+\declarecommand{\given}{\;\ifnum\currentgrouptype=16 \middle\fi\vert\;}
 
 % Asymptotics
 \DeclareMathOperator{\negl}{negl}
@@ -43,52 +43,52 @@
 \DeclareMathOperator{\strictlySlower}{\mathrm{o}}
 
 % Parameters & Notation
-\providecommand{\n}{n}
-%_\providecommand{\secpar}{{\glssymbol{secpar}}}
-\providecommand{\barsecpar}{\hat{\secpar}}
+\declarecommand{\n}{n}
+%_\declarecommand{\secpar}{{\glssymbol{secpar}}}
+\declarecommand{\barsecpar}{\hat{\secpar}}
 
 % Sets
-\providecommand{\bit}{\parc{\false,\true}}
-\providecommand{\bits}{\bit^*}
-\providecommand{\secparbits}[1][]{\bit^{#1\secpar}}
-\providecommand{\true}{1}
-\providecommand{\false}{0}
-\providecommand{\emptyString}{\varepsilon}
-\providecommand{\mulgroup}[1]{\Z_{#1}^\times}
-\providecommand{\Z}{\mathbb{Z}}
-\providecommand{\R}{\mathbb{R}}
-\providecommand{\N}{\mathbb{N}}
+\declarecommand{\bit}{\parc{\false,\true}}
+\declarecommand{\bits}{\bit^*}
+\declarecommand{\secparbits}[1][]{\bit^{#1\secpar}}
+\declarecommand{\true}{1}
+\declarecommand{\false}{0}
+\declarecommand{\emptyString}{\varepsilon}
+\declarecommand{\mulgroup}[1]{\Z_{#1}^\times}
+\declarecommand{\Z}{\mathbb{Z}}
+\declarecommand{\R}{\mathbb{R}}
+\declarecommand{\N}{\mathbb{N}}
 
 % Complexity Classes
-\providecommand{\P}{\AlgoFont{P}}
-\providecommand{\NP}{\AlgoFont{NP}}
-\providecommand{\DTIME}{\AlgoFont{DTIME}}
-\providecommand{\NC}[1][]{\ClassFont{NC}^{#1}}
+\declarecommand{\P}{\AlgoFont{P}}
+\declarecommand{\NP}{\AlgoFont{NP}}
+\declarecommand{\DTIME}{\AlgoFont{DTIME}}
+\declarecommand{\NC}[1][]{\ClassFont{NC}^{#1}}
 
 % Operations
-% \providecommand{\mod}{\operatorname{mod}}
-% \providecommand{\concat}{\mathopen{}\operatorname{||}\mathclose{}}
-% \providecommand{\d}{\mathrm{d}}
-\providecommand{\xor}{\oplus}
-\providecommand{\BigXOR}{\bigoplus}
-\providecommand{\cupdot}{\mathbin{\mathaccent\cdot\cup}}
-% \providecommand{\bigcupdot}{\mathop{\cdot\bigcup}}
-\providecommand{\bigcupdot}{\mathop{\hspace{8.8pt}\cdot \hspace{-8.8pt}\bigcup\hspace{5pt}}}
+% \declarecommand{\mod}{\operatorname{mod}}
+% \declarecommand{\concat}{\mathopen{}\operatorname{||}\mathclose{}}
+% \declarecommand{\d}{\mathrm{d}}
+\declarecommand{\xor}{\oplus}
+\declarecommand{\BigXOR}{\bigoplus}
+\declarecommand{\cupdot}{\mathbin{\mathaccent\cdot\cup}}
+% \declarecommand{\bigcupdot}{\mathop{\cdot\bigcup}}
+\declarecommand{\bigcupdot}{\mathop{\hspace{8.8pt}\cdot \hspace{-8.8pt}\bigcup\hspace{5pt}}}
 % \DeclareMathOperator{\bigcupdot}{\hspace{8.8pt}\cdot \hspace{-8.8pt}\bigcup\limits}
 
 % Relations
-\providecommand{\isequal}{\overset{?}{=}}
-% \providecommand{\implies}{\Rightarrow}
-\providecommand{\nimplies}{\centernot\implies}
-% \providecommand{\cind}{\overset{c}{\approx}}
-\providecommand{\sind}{\overset{s}{\approx}}
-%\providecommand{\UCRealize}{\overset{\mathrm{UC}}{\geq}}
-\providecommand{\isomorphic}{\cong}
-\providecommand{\pind}{\protect\mathpalette{\protect\independenT}{\perp}}
+\declarecommand{\isequal}{\overset{?}{=}}
+% \declarecommand{\implies}{\Rightarrow}
+\declarecommand{\nimplies}{\centernot\implies}
+% \declarecommand{\cind}{\overset{c}{\approx}}
+\declarecommand{\sind}{\overset{s}{\approx}}
+%\declarecommand{\UCRealize}{\overset{\mathrm{UC}}{\geq}}
+\declarecommand{\isomorphic}{\cong}
+\declarecommand{\pind}{\protect\mathpalette{\protect\independenT}{\perp}}
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
 
 % Randomness
-\providecommand{\Pr}[2][]{\operatorname{Pr}_{#1}\pars{#2}}
-\providecommand{\Ex}[1]{\operatorname{E}\pars{#1}}
-\providecommand{\Var}[1]{\operatorname{Var}\pars{#1}}
-\providecommand{\getsr}{\overset{\$}{\gets}}
+\declarecommand{\Pr}[2][]{\operatorname{Pr}_{#1}\pars{#2}}
+\declarecommand{\Ex}[1]{\operatorname{E}\pars{#1}}
+\declarecommand{\Var}[1]{\operatorname{Var}\pars{#1}}
+\declarecommand{\getsr}{\overset{\$}{\gets}}
