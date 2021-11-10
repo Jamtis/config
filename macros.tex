@@ -48,11 +48,9 @@
 \providecommand{\barsecpar}{\hat{\secpar}}
 
 % Sets
-\providecommand{\bit}{\parc*{\false,\true}}
+\providecommand{\bit}{\parc{\false,\true}}
 \providecommand{\bits}{\bit^*}
 \providecommand{\secparbits}[1][]{\bit^{#1\secpar}}
-% \providecommand{\barsecparbits}[1][]{\bit^{#1 \barsecpar}}
-% \providecommand{\bool}{\parc*{\false,\true}}
 \providecommand{\true}{1}
 \providecommand{\false}{0}
 \providecommand{\emptyString}{\varepsilon}
@@ -68,7 +66,6 @@
 \providecommand{\NC}[1][]{\ClassFont{NC}^{#1}}
 
 % Operations
-% \providecommand{\BinDist}[1]{\operatorname{Bin}\parr*{#1}}
 % \providecommand{\mod}{\operatorname{mod}}
 % \providecommand{\concat}{\mathopen{}\operatorname{||}\mathclose{}}
 % \providecommand{\d}{\mathrm{d}}
@@ -91,8 +88,7 @@
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
 
 % Randomness
-\providecommand{\Pr}[2][]{\operatorname{Pr}_{#1}\pars*{#2}}
-\providecommand{\Ex}[1]{\operatorname{E}\pars*{#1}}
-\providecommand{\Var}[1]{\operatorname{Var}\pars*{#1}}
+\providecommand{\Pr}[2][]{\operatorname{Pr}_{#1}\pars{#2}}
+\providecommand{\Ex}[1]{\operatorname{E}\pars{#1}}
+\providecommand{\Var}[1]{\operatorname{Var}\pars{#1}}
 \providecommand{\getsr}{\overset{\$}{\gets}}
-% \providecommand{\uniform}[1]{\mathcal{U}\parr*{#1}}
