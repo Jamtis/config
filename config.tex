@@ -154,6 +154,13 @@
     \end{enumerate}%
 }
 
+% https://tex.stackexchange.com/questions/223948/suggestions-for-nested-proofs
+\newenvironment{subproof}[1][\proofname]{%
+  \renewcommand{\qedsymbol}{$\blacksquare$}%
+  \begin{proof}[#1]%
+}{%
+  \end{proof}%
+}
 
 
 
