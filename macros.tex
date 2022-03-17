@@ -29,6 +29,9 @@
 \DeclareAutoPairedDelimiter{\at}{.}{\vert}
 % https://tex.stackexchange.com/questions/45713/creating-a-large-such-that-symbol
 \declarecommand{\given}{\;\ifnum\currentgrouptype=16 \middle\fi\vert\;}
+% https://tex.stackexchange.com/questions/182749/underbrace-matrix-inside-brackets
+\newcommand{\smashedunderbrace}[2]{\smash{\underbrace{#1}_{#2}}\vphantom{#1}}
+\newcommand{\smashedoverbrace}[2]{\smash{\overbrace{#1}_{#2}}\vphantom{#1}}
 
 % Asymptotics
 \DeclareMathOperator{\negl}{negl}
