@@ -1,5 +1,3 @@
-% \usepackage{xifthen}
-
 \makeatletter
 \@ifclassloaded{beamer}{
     \newcommand{\ifbeamer}[2]{
@@ -10,15 +8,6 @@
         #2
     }
 }
-% \@ifclassloaded{amsart}{
-%     \newcommand{\ifpaper}[2]{
-%         #1
-%     }
-% }{
-%     \newcommand{\ifpaper}[2]{
-%         #2
-%     }
-% }
 \@ifclassloaded{llncs}{
     \newcommand{\ifllncspaper}[2]{
         #1
@@ -56,35 +45,21 @@
 }
 \makeatother
 
-% \usepackage[utf8]{inputenc}
-% \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[english]{babel}
 \usepackage{xr} % load before hyperref
-%\usepackage{xr-hyper} % xr-hyper causes errors with restatable !
 \ifllncspaper{
     \usepackage[final,hidelinks]{hyperref}
     % \usepackage[pdftex,final,hyperfootnotes=false,colorlinks]{hyperref}
 }{}
-% \usepackage{bibgerm}
 
 \usepackage{ifdraft}
 
-%\ifdraft{
-%    \usepackage[citestyle=authoryear,style=trad-alpha,giveninits=true,backend=bibtex,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
-%}{
-%    \usepackage[citestyle=authoryear,style=trad-alpha,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
 \ifnumeric
     \usepackage[citestyle=numeric,style=numeric,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
 \else
     \usepackage[citestyle=authoryear,style=trad-alpha,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
 \fi
-%_\usepackage[sort&compress]{natbib}
-%\usepackage[protrusion=true,expansion,babel=true]{microtype}
-\usepackage{dsfont}
-
-\usepackage{xspace}
-\usepackage{xparse}
 
 \usepackage{algorithm} % load after hyperref
 \usepackage{algpseudocode}
@@ -96,51 +71,25 @@
     \usepackage{amsthm}
 }
 \usepackage{aligned-overset}
-%\usepackage[notext]{stix}
-\usepackage{stmaryrd}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{thmtools,thm-restate}
 \usepackage{mathtools}
-% \usepackage{thmtools}
-% \usepackage{MnSymbol}
 \usepackage{braket}
 \usepackage{centernot}
 \usepackage[b]{esvect}
 
 \usepackage[capitalize]{cleveref}
-%\usepackage{xr}
 \usepackage[tableposition=top,labelfont=bf,font={small}]{caption}
 \usepackage[]{subcaption}
 \usepackage[nopostdot,nomain,acronym,symbols,nogroupskip,nonumberlist]{glossaries}
-% \usepackage{glossaries-extra}
-% \usepackage{glossary-longragged}
-%\usepackage{acro}
-%\usepackage{booktabs}
 \usepackage{ulem}
 
 \usepackage[autostyle=true,german=quotes]{csquotes}
 \usepackage{mdframed}
 \usepackage{tikz}
-%\usepackage{romannum}
-
-
-%\usepackage[citestyle=numeric-comp,style=numeric,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false]{biblatex}
-%\usepackage[nodayofweek]{datetime}
-%\usepackage{siunitx}
-%\usepackage{color}
-%\usepackage{amsmath}
-%\usepackage{pdfpages}
-
-%\usepackage{stmaryrd}
-%\usepackage{comment}
-%\usepackage{xcolor}
-%\usepackage{breakcites}
 \usepackage{quoting}
 \usepackage{geometry}
-%\usepackage{fancybox}
-%\usepackage{upquote}
-%\usepackage{animate}
 
 \ifllncspaper{
     %\usepackage{longtable}
@@ -149,8 +98,8 @@
     \usepackage{marginnote}
     \usepackage{mathrsfs}
     %\usepackage{tabularx}
-    \usepackage{scalerel}
-    \usepackage{stackengine}
+    %\usepackage{scalerel}
+    %\usepackage{stackengine}
     
     % \usepackage[svgnames]{xcolor} % load this before todonotes
     \usepackage{calc}
@@ -165,7 +114,6 @@
 }{}
 
 \ifbeamer{
-    % \usepackage{romannum}
     \usepackage{adjustbox}
     \usepackage{appendixnumberbeamer}
     \usepackage{pgfpages}
@@ -177,3 +125,34 @@
 
 \usepackage{eqparbox}
 \usepackage[lambda,keys]{cryptocode}
+
+% \usepackage{xifthen}
+% \usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+%\usepackage{xr-hyper} % xr-hyper causes errors with restatable !
+% \usepackage{bibgerm}
+%_\usepackage[sort&compress]{natbib}
+%\usepackage[protrusion=true,expansion,babel=true]{microtype}
+%\usepackage{dsfont}
+%\usepackage{xspace}
+%\usepackage{xparse}
+%\usepackage[notext]{stix}
+% \usepackage{MnSymbol}
+% \usepackage{glossaries-extra}
+% \usepackage{glossary-longragged}
+%\usepackage{acro}
+%\usepackage{booktabs}
+%\usepackage{romannum}
+%\usepackage[citestyle=numeric-comp,style=numeric,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false]{biblatex}
+%\usepackage[nodayofweek]{datetime}
+%\usepackage{siunitx}
+%\usepackage{color}
+%\usepackage{amsmath}
+%\usepackage{pdfpages}
+%\usepackage{stmaryrd}
+%\usepackage{comment}
+%\usepackage{xcolor}
+%\usepackage{breakcites}
+%\usepackage{fancybox}
+%\usepackage{upquote}
+%\usepackage{animate}
