@@ -361,3 +361,8 @@
 \declarecommand{\DeclareAutoPairedDelimiter}[3]{%
     \declarecommand{#1}[1]{\ifdisplay\left#2\else#2\fi##1\ifdisplay\right#3\else#3\fi}
 }
+
+
+%% auto cref
+\let\originalcref\cref
+\renewcommand{\cref}[1]{\ifdisplay\textup{\originalcref{#1}}\else\originalcref{#1}\fi}
