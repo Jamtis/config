@@ -287,7 +287,9 @@
 %% save compile time
 \ifdraft{
     % this may cause some reference to to be resolved correctly
-    \let\import\include
+    %\let\import\include
+    % unresolved references are annoying
+    \let\import\input
 }{
     \let\import\input
 }
