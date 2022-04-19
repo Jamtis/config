@@ -366,3 +366,7 @@
 %% auto cref
 \let\originalcref\cref
 \renewcommand{\cref}[1]{\ifdisplay\textup{\originalcref{#1}}\else\originalcref{#1}\fi}
+
+%% strikeout in math mode
+\let\originalsout\sout
+\renewcommand{\sout}[1]{\ifmmode\text{\originalsout{\ensuremath{#1}}}\else\originalsout{#1}\fi}
