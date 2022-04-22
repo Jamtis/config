@@ -15,20 +15,31 @@
 \ifbeamer{
     % \setbeameroption{show notes on second screen = right}
 }{
-    % Geometry
-    \geometry{
-        a4paper,
-        textwidth=15cm,
-        textheight=24cm,
-        heightrounded,
-        hratio=1:1,
-        vratio=2:3,
-    }
-    
-    \ifllncspaper{
-        % We need page numbers according to https://crypto.iacr.org/2021/callforpapers.html
-        \pagestyle{plain}
+    \ifdraft{
+        \geometry{
+            paperwidth=25cm,
+            textheight=24cm,
+            heightrounded,
+            left=1cm,
+            right=10cm-2cm,
+            marginparwidth=9cm
+        }
     }{
+        \ifeprint
+            \geometry{
+                a4paper,
+                left=1in,
+                right=1in,
+            }
+        \fi
+    }
+}
+
+
+%% Environments
+\ifbeamer{}{
+    \ifllncspaper{}{
+        % environments
         \newtheoremstyle{break} % name
           {}                    % Space above, empty = `usual value'
           {}                    % Space below
@@ -47,10 +58,10 @@
         \newtheorem{definition}[theorem]{Definition}
         \newtheorem{construction}[theorem]{Construction}
         \newtheorem{example}{Example}[theorem]
-        \newtheorem{observation}{Observation}
+        %\newtheorem{observation}{Observation}
         %\newtheorem{notation}[theorem]{Notation}
         %\crefname{observation}{observation}{observations}
-        \Crefname{observation}{Observation}{Observations}
+        %\Crefname{observation}{Observation}{Observations}
     }
     \declaretheorem[name=Notation]{notation}
     \declaretheorem[name=Observation]{observation}
@@ -58,25 +69,6 @@
     \declaretheorem[name=Claim]{claim}
     \crefname{claim}{Claim}{Claims}
 }
-
-
-%% Todos
-\ifllncspaper{
-    \ifoptiondraft{% Larger margins to have todos readable
-        \paperwidth=\dimexpr \paperwidth + 10cm\relax
-        \oddsidemargin=\dimexpr\oddsidemargin + 5cm\relax
-        \evensidemargin=\dimexpr\evensidemargin + 5cm\relax
-        \marginparwidth=\dimexpr \marginparwidth + 5cm\relax
-    }{}
-    \ifluatex \else
-        \renewcommand{\marginpar}{\marginnote}
-    \fi
-}{
-    \presetkeys{todonotes}{inline}{}
-}
-
-
-%% environments
 \newenvironment{nalign}{
     \begin{equation}
         \begin{aligned}
@@ -163,6 +155,22 @@
 }
 
 
+%% Square at end of each proof
+\let\originalendproof\endproof
+\renewcommand\endproof{~\hfill\originalendproof}
+
+
+%% Todos
+\providecommand{\marginnote}[1]{}
+\ifllncspaper{
+    \ifluatex\else
+        \renewcommand{\marginpar}{\marginnote}
+    \fi
+}{
+    \presetkeys{todonotes}{inline}{}
+}
+
+
 
 %% lists
 \ifbeamer{}{
@@ -198,69 +206,11 @@
 \def\UrlFont{\rm}
 
 
-%% GLS
-\newlength\glsnamewidth
-\newlength\glssymbolwidth
-\settowidth{\glsnamewidth}{\textbf{Name ................}}
-\settowidth{\glssymbolwidth}{\textbf{Symbol}}
-\newglossarystyle{symbolnamedesc}{%
-  \setlength{\glsdescwidth}{\linewidth-\glsnamewidth-\glssymbolwidth-6\tabcolsep}%
-  \renewenvironment{theglossary}%
-    {\begin{longtable}{p{\glssymbolwidth}p{\glsnamewidth}p{\glsdescwidth}}}%
-    {\end{longtable}}%
- \renewcommand*{\glossaryheader}{%
-    \bfseries Symbol
-   & \bfseries Name
-   & \bfseries Description
-   \tabularnewline
-   \midrule
-   \tabularnewline\endhead}%
-  \renewcommand*{\glsgroupheading}[1]{}%
-  \renewcommand{\glossentry}[2]{%
-    \glossentrysymbol{##1} &
-    \glstarget{##1}{\glossentryname{##1}} &
-    \glossentrydesc{##1}\tabularnewline
-  }%
-  \renewcommand{\subglossentry}[3]{\glossentry{##2}{##3}}%
-  \renewcommand*{\glsgroupskip}{}%
-}
-
-\newglossarystyle{acrodesc}{%
-  \setlength{\glsdescwidth}{\linewidth-\glsnamewidth-3\tabcolsep}%
-  \renewenvironment{theglossary}%
-    {\begin{longtable}{p{\glsnamewidth}p{\glsdescwidth}}}%
-    {\end{longtable}}%
- \renewcommand*{\glossaryheader}{%
-     \bfseries Acronym
-   & \bfseries Description
-   \tabularnewline
-   \midrule
-   \tabularnewline\endhead}%
-  \renewcommand*{\glsgroupheading}[1]{}%
-  \renewcommand{\glossentry}[2]{%
-    \glstarget{##1}{\glossentryname{##1}} &
-    \glossentrydesc{##1}\tabularnewline
-  }%
-  \renewcommand{\subglossentry}[3]{\glossentry{##2}{##3}}%
-  \renewcommand*{\glsgroupskip}{}%
-}
-\glsdisablehyper
-
-
-%% no \newpage for includes
-\ifbeamer{}{
-	\let\originalinclude\include
-	\renewcommand*{\include}[1]{
-        \begingroup
-		\let\clearpage\relax
-		\originalinclude{#1}
-        \endgroup
-	}
-}
-
-%% square at end of each proof
-\let\doendproof\endproof
-\renewcommand\endproof{~\hfill\qed\doendproof}
+%% Page numbering
+\ifllncspaper{
+    % We need page numbers according to https://crypto.iacr.org/2021/callforpapers.html
+    \pagestyle{plain}
+}{}
 
 
 %% ulem...
@@ -283,18 +233,7 @@
 \def\arraystretch{1.2}
 \AtBeginDocument{\setlength{\tabcolsep}{0.5em}}
 
-
-%% save compile time
-\ifdraft{
-    % this may cause some reference to to be resolved correctly
-    %\let\import\include
-    % unresolved references are annoying
-    \let\import\input
-}{
-    \let\import\input
-}
-
-%% default hyper setup
+%% Default hyper setup
 \ifsubmission
     \hypersetup{
         linktoc=all,
@@ -307,7 +246,7 @@
 \setcounter{tocdepth}{2}
 
 
-%% hyper-xr
+%% Cross-referencing: hyper-xr
 \makeatletter
 \newcommand*{\addFileDependency}[1]{% argument=file name and extension
   \typeout{(#1)}
@@ -323,7 +262,7 @@
 }
 
 
-%% my TOC
+%% My TOC
 \newcommand{\mytoc}{
     \begingroup
         \let\clearpage\relax
@@ -334,7 +273,7 @@
 }
 
 
-%% my maketitle
+%% My maketitle
 \newcommand{\mymaketitle}{
     \begingroup
         \let\oldaddcontentsline\addcontentsline
@@ -355,7 +294,7 @@
 }
 
 
-%% auto delimiter
+%% Auto delimiters
 \let\ifdisplay\iffalse
 \everydisplay\expandafter{\let\ifdisplay\iftrue}
 \declarecommand{\DeclareAutoPairedDelimiter}[3]{%
@@ -366,3 +305,8 @@
 %% auto cref
 \let\originalcref\cref
 \renewcommand{\cref}[1]{\ifdisplay\textup{\originalcref{#1}}\else\originalcref{#1}\fi}
+
+
+%% strikeout in math mode
+\let\originalsout\sout
+\renewcommand{\sout}[1]{\ifmmode\text{\originalsout{\ensuremath{#1}}}\else\originalsout{#1}\fi}

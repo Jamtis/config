@@ -45,74 +45,48 @@
 }
 \makeatother
 
-\usepackage{lmodern}
-\usepackage[english]{babel}
-\usepackage{xr} % load before hyperref
-\ifllncspaper{
-    \usepackage[final,hidelinks]{hyperref}
-    % \usepackage[pdftex,final,hyperfootnotes=false,colorlinks]{hyperref}
-}{}
-
 \usepackage{ifdraft}
+\usepackage{ifluatex}
 
-\ifnumeric
-    \usepackage[citestyle=numeric,style=numeric,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
-\else
-    \usepackage[citestyle=authoryear,style=trad-alpha,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
-\fi
 
-\usepackage{algorithm} % load after hyperref
-\usepackage{algpseudocode}
-\usepackage{algorithmicx}
-
+%% Math
 \usepackage{mleftright}
-\usepackage{amsmath}
+%\usepackage{amsmath}
 \ifllncspaper{}{
     \usepackage{amsthm}
 }
 \usepackage{aligned-overset}
-\usepackage{amsfonts}
+%\usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{thmtools,thm-restate}
 \usepackage{mathtools}
 \usepackage{braket}
 \usepackage{centernot}
 \usepackage[b]{esvect}
+\usepackage{fnpct} % kerns footnote superscripts
 
-\usepackage[capitalize]{cleveref}
+
+%% Typesetting
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{xr} % load before hyperref
+\usepackage[final,hidelinks]{hyperref}
+\usepackage[capitalize]{cleveref} % load after amsmath
 \usepackage[tableposition=top,labelfont=bf,font={small}]{caption}
 \usepackage[]{subcaption}
 \usepackage[nopostdot,nomain,acronym,symbols,nogroupskip,nonumberlist]{glossaries}
 \usepackage{ulem}
-
-\usepackage[autostyle=true,german=quotes]{csquotes}
-\usepackage{mdframed}
-\usepackage{tikz}
-\usepackage{quoting}
-\usepackage{geometry}
-
-\ifllncspaper{
-    %\usepackage{longtable}
-    %\usepackage{booktabs}
-    \usepackage{fnpct}
-    \usepackage{marginnote}
-    \usepackage{mathrsfs}
-    %\usepackage{tabularx}
-    %\usepackage{scalerel}
-    %\usepackage{stackengine}
-    
-    % \usepackage[svgnames]{xcolor} % load this before todonotes
-    \usepackage{calc}
-    
-    \usepackage{ifluatex}
-    \ifluatex
-        \let\pdfoutput \outputmode
-        \usepackage[obeyDraft,splitting=middle]{luatodonotes}
-    \else
-        \usepackage[obeyDraft]{todonotes}
-    \fi
-}{}
-
+\ifnumeric
+    \usepackage[citestyle=numeric,style=numeric,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
+\else
+    \usepackage[citestyle=authoryear,style=trad-alpha,giveninits=true,backend=biber,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
+\fi
+\ifluatex
+    \let\pdfoutput\outputmode
+    \usepackage[obeyDraft,splitting=middle]{luatodonotes}
+\else
+    \usepackage[obeyDraft]{todonotes}
+\fi
 \ifbeamer{
     \usepackage{adjustbox}
     \usepackage{appendixnumberbeamer}
@@ -122,10 +96,31 @@
     \usepackage[inline]{enumitem}
     % \usepackage[obeyFinal]{todonotes}
 }
+\usepackage{quoting}
+\usepackage[autostyle=true,german=quotes]{csquotes}
+\usepackage{mdframed}
+\usepackage{tikz}
+\ifdraft{
+    \usepackage{geometry}
+    \usepackage{marginnote}
+}{
+    \ifeprint
+        \usepackage{geometry}
+    \fi
+}
+\usepackage{calc}
 
-\usepackage{eqparbox}
+
+%% Extras
+\usepackage{algorithm} % load after hyperref
+\usepackage{algpseudocode}
+\usepackage{algorithmicx}
 \usepackage[lambda,keys]{cryptocode}
 
+
+%% Obsolete
+% \usepackage{mathrsfs}
+% \usepackage{eqparbox}
 % \usepackage{xifthen}
 % \usepackage[utf8]{inputenc}
 % \usepackage[T1]{fontenc}
@@ -156,3 +151,9 @@
 %\usepackage{fancybox}
 %\usepackage{upquote}
 %\usepackage{animate}
+%\usepackage{longtable}
+%\usepackage{booktabs}
+%\usepackage{tabularx}
+%\usepackage{scalerel}
+%\usepackage{stackengine}
+% \usepackage[svgnames]{xcolor} % load this before todonotes
