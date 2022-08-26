@@ -62,6 +62,8 @@
         %\newtheorem{notation}[theorem]{Notation}
         %\crefname{observation}{observation}{observations}
         %\Crefname{observation}{Observation}{Observations}
+        \declaretheorem[name=Conjecture]{conjecture}
+        \crefname{conjecture}{Conjecture}{Conjectures}
     }
     \declaretheorem[name=Notation]{notation}
     \crefname{notation}{Notation}{Notations}
@@ -150,7 +152,8 @@
 
 % https://tex.stackexchange.com/questions/223948/suggestions-for-nested-proofs
 \newenvironment{subproof}[1][\proofname]{%
-  \renewcommand{\qed}{\(\blacksquare\)}%
+    \providecommand{\qedsymbol}{}%
+    \renewcommand{\qedsymbol}{\(\blacksquare\)}%
   \begin{proof}[#1]%
 }{%
   \end{proof}%
