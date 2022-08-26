@@ -154,8 +154,12 @@
 
 % https://tex.stackexchange.com/questions/223948/suggestions-for-nested-proofs
 \newenvironment{subproof}[1][\proofname]{%
+<<<<<<< HEAD
     \providecommand{\qedsymbol}{}%
     \renewcommand{\qedsymbol}{\(\blacksquare\)}%
+=======
+  \renewcommand{\qedsymbol}{\(\blacksquare\)}%
+>>>>>>> 4d7f74707890f1fc9c9064a9dc30956e417a009b
   \begin{proof}[#1]%
 }{%
   \end{proof}%
