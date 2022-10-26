@@ -31,8 +31,8 @@
 % https://tex.stackexchange.com/questions/45713/creating-a-large-such-that-symbol
 \declarecommand{\given}{\;\ifnum\currentgrouptype=16 \middle\fi\vert\;}
 % https://tex.stackexchange.com/questions/182749/underbrace-matrix-inside-brackets
-\newcommand{\smashedunderbrace}[2]{\smash{\underbrace{#1}_{#2}}\vphantom{#1}}
-\newcommand{\smashedoverbrace}[2]{\smash{\overbrace{#1}_{#2}}\vphantom{#1}}
+\declarecommand{\smashedunderbrace}[2]{\smash{\underbrace{#1}_{#2}}\vphantom{#1}}
+\declarecommand{\smashedoverbrace}[2]{\smash{\overbrace{#1}_{#2}}\vphantom{#1}}
 
 % Asymptotics
 \DeclareMathOperator{\negl}{negl}
@@ -79,6 +79,8 @@
 % \declarecommand{\bigcupdot}{\mathop{\cdot\bigcup}}
 \declarecommand{\bigcupdot}{\mathop{\hspace{8.8pt}\cdot \hspace{-8.8pt}\bigcup\hspace{5pt}}}
 % \DeclareMathOperator{\bigcupdot}{\hspace{8.8pt}\cdot \hspace{-8.8pt}\bigcup\limits}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
 
 % Relations
 \declarecommand{\isequal}{\overset{?}{=}}
@@ -90,6 +92,14 @@
 \declarecommand{\isomorphic}{\cong}
 \declarecommand{\pind}{\protect\mathpalette{\protect\independenT}{\perp}}
 \def\independenT#1#2{\mathrel{\rlap{\(#1#2\)}\mkern2mu{#1#2}}}
+{
+    \let\originalleq\leq
+    \declarecommand{\leq}[1][]{\originalleq_{\mathsf{#1}}}
+    \declarecommand{\l}[1][]{<_{\mathsf{#1}}}
+    \let\originalgeq\geq
+    \declarecommand{\geq}[1][]{\originalgeq_{\mathsf{#1}}}
+    \declarecommand{\g}[1][]{>_{\mathsf{#1}}}
+}
 
 % Randomness
 \declarecommand{\Pr}[2][]{\operatorname{Pr}_{#1}\pars{#2}}

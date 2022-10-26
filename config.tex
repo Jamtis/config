@@ -72,6 +72,10 @@
     \let\claim\relax
     \declaretheorem[name=Claim]{claim}
     \crefname{claim}{Claim}{Claims}
+    \declaretheorem[name=Fact]{fact}
+    \crefname{fact}{Fact}{Facts}
+    \declaretheorem[name=Assumption]{assumption}
+    \crefname{assumption}{Assumption}{Assumptions}
 }
 \newenvironment{nalign}{
     \begin{equation}
@@ -158,6 +162,16 @@
 }{%
   \end{proof}%
 }
+
+\newenvironment{bralign}{
+    \begingroup
+    \allowdisplaybreaks
+    \align
+}{
+    \endalign
+    \endgroup
+}
+
 
 
 %% Square at end of each proof
