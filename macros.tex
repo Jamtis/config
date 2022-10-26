@@ -92,14 +92,13 @@
 \declarecommand{\isomorphic}{\cong}
 \declarecommand{\pind}{\protect\mathpalette{\protect\independenT}{\perp}}
 \def\independenT#1#2{\mathrel{\rlap{\(#1#2\)}\mkern2mu{#1#2}}}
-{
-    \let\originalleq\leq
-    \declarecommand{\leq}[1][]{\originalleq_{\mathsf{#1}}}
-    \declarecommand{\l}[1][]{<_{\mathsf{#1}}}
-    \let\originalgeq\geq
-    \declarecommand{\geq}[1][]{\originalgeq_{\mathsf{#1}}}
-    \declarecommand{\g}[1][]{>_{\mathsf{#1}}}
-}
+\let\originalleq\leq
+\declarecommand{\leq}[1][]{\originalleq_{\mathsf{#1}}}
+\declarecommand{\l}[1][]{<_{\mathsf{#1}}}
+\let\originalgeq\geq
+\declarecommand{\geq}[1][]{\originalgeq_{\mathsf{#1}}}
+\declarecommand{\g}[1][]{>_{\mathsf{#1}}}
+
 
 % Randomness
 \declarecommand{\Pr}[2][]{\operatorname{Pr}_{#1}\pars{#2}}
