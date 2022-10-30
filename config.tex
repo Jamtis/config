@@ -176,14 +176,14 @@
 
 %% Square at end of each proof
 \let\originalendproof\endproof
-\renewcommand\endproof{~\hfill\originalendproof}
+\declare{\endproof}{~\hfill\originalendproof}
 
 
 %% Todos
-\providecommand{\marginnote}[1]{}
+\declarecommand{\marginnote}[1]{}
 \ifllncspaper{
     \ifluatex\else
-        \renewcommand{\marginpar}{\marginnote}
+        \declarecommand{\marginpar}{\marginnote}
     \fi
 }{
     \presetkeys{todonotes}{inline}{}
@@ -193,7 +193,7 @@
 
 %% lists
 \ifbeamer{}{
-    \renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+    \declarecommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
     \setlist{noitemsep, topsep=0pt}
 }
 
@@ -282,7 +282,7 @@
 
 
 %% My TOC
-\newcommand{\mytoc}{
+\declarecommand{\mytoc}{
     \begingroup
         \let\clearpage\relax
         \let\chapter\section
@@ -293,7 +293,7 @@
 
 
 %% My maketitle
-\newcommand{\mymaketitle}{
+\declarecommand{\mymaketitle}{
     \begingroup
         \let\oldaddcontentsline\addcontentsline
         \renewcommand*{\addcontentsline}[3]{%
@@ -323,9 +323,9 @@
 
 %% auto cref
 \let\originalcref\cref
-\renewcommand{\cref}[1]{\ifdisplay\textup{\originalcref{#1}}\else\originalcref{#1}\fi}
+\declarecommand{\cref}[1]{\ifdisplay\textup{\originalcref{#1}}\else\originalcref{#1}\fi}
 
 
 %% strikeout in math mode
 \let\originalsout\sout
-\renewcommand{\sout}[1]{\ifmmode\text{\originalsout{\ensuremath{#1}}}\else\originalsout{#1}\fi}
+\declarecommand{\sout}[1]{\ifmmode\text{\originalsout{\ensuremath{#1}}}\else\originalsout{#1}\fi}
