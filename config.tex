@@ -12,71 +12,66 @@
 
 
 %% Geometry
-\ifbeamer{
-    % \setbeameroption{show notes on second screen = right}
-}{
-    \ifdraft{
-        \geometry{
-            paperwidth=25cm,
-            textheight=24cm,
-            heightrounded,
-            left=1cm,
-            right=8cm,
-            marginparwidth=7cm
-        }
-    }{
-        \ifeprint
-            \geometry{
-                a4paper,
-                left=1in,
-                right=1in,
-            }
-        \fi
+\ifdraft{
+    \geometry{
+        paperwidth=25cm,
+        textheight=24cm,
+        heightrounded,
+        left=1cm,
+        right=8cm,
+        marginparwidth=7cm
     }
+}{
+    \iffullversion
+        \geometry{
+            a4paper,
+            left=1in,
+            right=1in,
+        }
+    \fi
 }
 
 
 %% Environments
-\ifbeamer{}{
-    \ifllncspaper{}{
-        % environments
-        \newtheoremstyle{break} % name
-          {}                    % Space above, empty = `usual value'
-          {}                    % Space below
-          {}                    % Body font
-          {}                    % Indent amount (empty = no indent, \parindent = para indent)
-          {\bfseries}           % Thm head font
-          {}                    % Punctuation after thm head
-          {\newline}            % Space after thm head: \newline = linebreak
-          {}                    % Thm head spec
-        
-        \theoremstyle{break}
-        \newtheorem{theorem}{Theorem}[section]
-        \newtheorem{remark}[theorem]{Remark}
-        \newtheorem{corollary}[theorem]{Corollary}
-        \newtheorem{lemma}[theorem]{Lemma}
-        \newtheorem{definition}[theorem]{Definition}
-        \newtheorem{construction}[theorem]{Construction}
-        \newtheorem{example}{Example}[theorem]
-        %\newtheorem{observation}{Observation}
-        %\newtheorem{notation}[theorem]{Notation}
-        %\crefname{observation}{observation}{observations}
-        %\Crefname{observation}{Observation}{Observations}
-        \declaretheorem[name=Conjecture]{conjecture}
-        \crefname{conjecture}{Conjecture}{Conjectures}
-    }
-    \declaretheorem[name=Notation]{notation}
-    \crefname{notation}{Notation}{Notations}
-    \declaretheorem[name=Observation]{observation}
-    \crefname{observation}{Observation}{Observations}
-    \let\claim\relax
-    \declaretheorem[name=Claim]{claim}
-    \crefname{claim}{Claim}{Claims}
-    \declaretheorem[name=Fact]{fact}
-    \crefname{fact}{Fact}{Facts}
-    \declaretheorem[name=Assumption]{assumption}
-    \crefname{assumption}{Assumption}{Assumptions}
-}
+\iffullversion
+    % environments
+    \newtheoremstyle{break} % name
+        {}                    % Space above, empty = `usual value'
+        {}                    % Space below
+        {}                    % Body font
+        {}                    % Indent amount (empty = no indent, \parindent = para indent)
+        {\bfseries}           % Thm head font
+        {}                    % Punctuation after thm head
+        {\newline}            % Space after thm head: \newline = linebreak
+        {}                    % Thm head spec
+    
+    \theoremstyle{break}
+    \newtheorem{theorem}{Theorem}[section]
+    \newtheorem{remark}[theorem]{Remark}
+    \newtheorem{corollary}[theorem]{Corollary}
+    \newtheorem{lemma}[theorem]{Lemma}
+    \newtheorem{definition}[theorem]{Definition}
+    \newtheorem{construction}[theorem]{Construction}
+    \newtheorem{example}{Example}[theorem]
+    %\newtheorem{observation}{Observation}
+    %\newtheorem{notation}[theorem]{Notation}
+    %\crefname{observation}{observation}{observations}
+    %\Crefname{observation}{Observation}{Observations}
+    \declaretheorem[name=Conjecture]{conjecture}
+    \crefname{conjecture}{Conjecture}{Conjectures}
+\fi
+\declaretheorem[name=Notation]{notation}
+\crefname{notation}{Notation}{Notations}
+\declaretheorem[name=Observation]{observation}
+\crefname{observation}{Observation}{Observations}
+\let\claim\relax
+\declaretheorem[name=Claim]{claim}
+\crefname{claim}{Claim}{Claims}
+\declaretheorem[name=Fact]{fact}
+\crefname{fact}{Fact}{Facts}
+\declaretheorem[name=Assumption]{assumption}
+\crefname{assumption}{Assumption}{Assumptions}
+
 \newenvironment{nalign}{
     \begin{equation}
         \begin{aligned}
@@ -173,29 +168,24 @@
 }
 
 
-
 %% Square at end of each proof
 \let\originalendproof\endproof
-\declarecommand{\endproof}{~\hfill\originalendproof}
+% \providecommand{\endproof}{~\hfill\originalendproof}
 
 
 %% Todos
-\declarecommand{\marginnote}[1]{}
-\ifllncspaper{
-    \ifluatex\else
-        \declarecommand{\marginpar}{\marginnote}
-    \fi
+\ifdraft{
+    \providecommand{\marginpar}[1]{}
+    \providecommand{\marginnote}{\marginpar}
 }{
-    \presetkeys{todonotes}{inline}{}
+    \declarecommand{\marginpar}[1]{}
+    \declarecommand{\marginnote}[1]{}
 }
-
 
 
 %% lists
-\ifbeamer{}{
-    \declarecommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
-    \setlist{noitemsep, topsep=0pt}
-}
+\declarecommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\setlist{noitemsep, topsep=0pt}
 
 
 %% tikz
@@ -226,10 +216,11 @@
 
 
 %% Page numbering
-\ifllncspaper{
+\iffullversion
+\else
     % We need page numbers according to https://crypto.iacr.org/2021/callforpapers.html
     \pagestyle{plain}
-}{}
+\fi
 
 
 %% ulem...
@@ -243,9 +234,6 @@
 
 %% Typography
 \renewcommand*{\bibfont}{\small}
-\ifbeamer{
-    \AtBeginBibliography{\fontsize{3}{3}}
-}{}
 
 
 %% Table
@@ -253,11 +241,11 @@
 \AtBeginDocument{\setlength{\tabcolsep}{0.5em}}
 
 %% Default hyper setup
-\ifsubmission
+\ifanonymous
     \hypersetup{
         linktoc=all,
         pdfauthor={},
-        pdftitle={Anonymous submission},
+        pdftitle={},
         pdfsubject={},
         pdfkeywords={}
     }
@@ -279,6 +267,13 @@
     \addFileDependency{#1.tex}%
     \addFileDependency{#1.aux}%
 }
+
+%% providing llncs dummy commands
+\providecommand{\inst}[1]{}
+\providecommand{\institute}[1]{}
+\providecommand{\email}[1]{}
+\providecommand{\keywords}[1]{}
+\providecommand{\and}{}
 
 
 %% My TOC

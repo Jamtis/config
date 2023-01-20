@@ -1,0 +1,20 @@
+\makeatletter
+
+\@ifundefined{ifanonymous}{
+    \let\ifanonymous\iffalse
+}{}
+
+\@ifundefined{iffullversion}{
+    \let\iffullversion\iftrue
+}{}
+\iffullversion
+    \def\class{article}
+\else
+    \def\class{llncs}
+\fi
+
+\@ifundefined{ifnumeric}{
+    \let\ifnumeric\iftrue
+}{}
+
+\makeatother
