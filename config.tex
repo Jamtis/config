@@ -3,7 +3,7 @@
 \newcommand*{\setcommand}{%
   \@star@or@long\declare@command
 }
-\newcommand*{\declare@command}[1]{%
+\newcommand*{\set@command}[1]{%
   \provide@command{#1}{}%
   % \let#1\@empty % would be more efficient, but without error checking
   \renew@command{#1}%
@@ -21,15 +21,7 @@
         right=8cm,
         marginparwidth=7cm
     }
-}{
-    \iffullversion
-        \geometry{
-            a4paper,
-            left=1in,
-            right=1in,
-        }
-    \fi
-}
+}{}
 
 
 %% Environments
