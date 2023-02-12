@@ -1,6 +1,6 @@
 % https://tex.stackexchange.com/questions/128797/a-renewcommand-that-does-not-care-if-a-command-is-already-defined
 \makeatletter
-\newcommand*{\declarecommand}{%
+\newcommand*{\setcommand}{%
   \@star@or@long\declare@command
 }
 \newcommand*{\declare@command}[1]{%
@@ -91,11 +91,11 @@
 \makeatletter
 \let\oldframetitle\mdf@@frametitle@use
 \let\mdf@@frametitle@use\relax
-\declarecommand{\mdf@@frametitle@use}{}
+\setcommand{\mdf@@frametitle@use}{}
 \makeatother
 \newcommand{\newcontdbox}[2]{
     \newenvironment{#1}[1]{
-        \declarecommand{\sitem}{}
+        \setcommand{\sitem}{}
         % \tolerance=6500
         \tolerance=99999
         \begin{mdframed}[
@@ -178,13 +178,13 @@
     \providecommand{\marginpar}[1]{}
     \providecommand{\marginnote}{\marginpar}
 }{
-    \declarecommand{\marginpar}[1]{}
-    \declarecommand{\marginnote}[1]{}
+    \setcommand{\marginpar}[1]{}
+    \setcommand{\marginnote}[1]{}
 }
 
 
 %% lists
-\declarecommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\setcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
 \setlist{noitemsep, topsep=0pt}
 
 
@@ -277,7 +277,7 @@
 
 
 %% My TOC
-\declarecommand{\mytoc}{
+\setcommand{\mytoc}{
     \begingroup
         \let\clearpage\relax
         \let\chapter\section
@@ -288,7 +288,7 @@
 
 
 %% My maketitle
-\declarecommand{\mymaketitle}{
+\setcommand{\mymaketitle}{
     \begingroup
         \let\oldaddcontentsline\addcontentsline
         \renewcommand*{\addcontentsline}[3]{%
@@ -311,16 +311,16 @@
 %% Auto delimiters
 \let\ifdisplay\iffalse
 \everydisplay\expandafter{\let\ifdisplay\iftrue}
-\declarecommand{\DeclareAutoPairedDelimiter}[3]{%
-    \declarecommand{#1}[1]{\ifdisplay\left#2\else#2\fi##1\ifdisplay\right#3\else#3\fi}
+\setcommand{\DeclareAutoPairedDelimiter}[3]{%
+    \setcommand{#1}[1]{\ifdisplay\left#2\else#2\fi##1\ifdisplay\right#3\else#3\fi}
 }
 
 
 %% auto cref
 \let\originalcref\cref
-\declarecommand{\cref}[1]{\ifdisplay\textup{\originalcref{#1}}\else\originalcref{#1}\fi}
+\setcommand{\cref}[1]{\ifdisplay\textup{\originalcref{#1}}\else\originalcref{#1}\fi}
 
 
 %% strikeout in math mode
 \let\originalsout\sout
-\declarecommand{\sout}[1]{\ifmmode\text{\originalsout{\ensuremath{#1}}}\else\originalsout{#1}\fi}
+\setcommand{\sout}[1]{\ifmmode\text{\originalsout{\ensuremath{#1}}}\else\originalsout{#1}\fi}
