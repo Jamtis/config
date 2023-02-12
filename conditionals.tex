@@ -17,10 +17,6 @@
     \let\ifnumeric\iftrue
 }{}
 
-\@ifclassloaded{llncs}{
-    \let\ifllncs\iftrue
-}{
-    \let\ifllncs\iffalse
-}
+\newcommand{\ifllncs}[2]{\@ifclassloaded{llncs}{#1}{#2}}
 
 \makeatother

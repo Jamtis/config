@@ -80,6 +80,13 @@
     \ignorespacesafterend
 }
 
+\newenvironment{senumerate}{
+    \begin{enumerate}[leftmargin=3.5mm]
+}{
+    \end{enumerate}
+    \ignorespacesafterend
+}
+
 \makeatletter
 \let\oldframetitle\mdf@@frametitle@use
 \let\mdf@@frametitle@use\relax
