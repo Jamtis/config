@@ -21,7 +21,15 @@
         right=8cm,
         marginparwidth=7cm
     }
-}{}
+}{
+    \iffullversion
+        \geometry{
+            a4paper,
+            left=1in,
+            right=1in,
+        }
+    \fi
+}
 
 
 %% Environments
