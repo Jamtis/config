@@ -22,18 +22,18 @@
         marginparwidth=7cm
     }
 }{
-    \iffullversion
+    \ifllncs{}{
         \geometry{
             a4paper,
             left=1in,
             right=1in,
         }
-    \fi
+    }
 }
 
 
 %% Environments
-\iffullversion
+\ifllncs{}{
     % environments
     \newtheoremstyle{break} % name
         {}                    % Space above, empty = `usual value'
@@ -59,7 +59,7 @@
     %\Crefname{observation}{Observation}{Observations}
     \declaretheorem[name=Conjecture]{conjecture}
     \crefname{conjecture}{Conjecture}{Conjectures}
-\fi
+}
 \declaretheorem[name=Notation]{notation}
 \crefname{notation}{Notation}{Notations}
 \declaretheorem[name=Observation]{observation}
@@ -223,11 +223,10 @@
 
 
 %% Page numbering
-\iffullversion
-\else
+\ifllncs{
     % We need page numbers according to https://crypto.iacr.org/2021/callforpapers.html
     \pagestyle{plain}
-\fi
+}{}
 
 
 %% ulem...

@@ -10,8 +10,11 @@
 \iffullversion
     \def\class{article}
 \else
-    \def\class{llncs}
 \fi
+
+\@ifundefined{ifdraft}{
+    \let\ifpredraft\iffalse
+}{}
 
 \@ifundefined{ifnumeric}{
     \let\ifnumeric\iftrue
@@ -20,3 +23,16 @@
 \newcommand{\ifllncs}[2]{\@ifclassloaded{llncs}{#1}{#2}}
 
 \makeatother
+
+\ifdraft
+    \def\mode{draft}
+    \def\class{article}
+\else
+    \def\mode{final}
+    \iffullversion
+        \def\class{article}
+    \else
+        \def\class{llncs}
+    \fi
+\fi
+\let\ifdraft\relax
