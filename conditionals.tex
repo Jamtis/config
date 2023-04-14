@@ -12,10 +12,6 @@
 \else
 \fi
 
-\@ifundefined{ifdraft}{
-    \let\ifpredraft\iffalse
-}{}
-
 \@ifundefined{ifnumeric}{
     \let\ifnumeric\iftrue
 }{}
@@ -25,10 +21,10 @@
 \makeatother
 
 \ifdraft
-    \def\mode{draft}
+    \def\draftmode{draft}
     \def\class{article}
 \else
-    \def\mode{final}
+    \def\draftmode{final}
     \iffullversion
         \def\class{article}
     \else
