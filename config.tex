@@ -11,22 +11,24 @@
 \makeatother
 
 
-%% Geometry
-\ifdraft{
-    \geometry{
-        paperwidth=25cm,
-        textheight=24cm,
-        heightrounded,
-        left=1cm,
-        right=8cm,
-        marginparwidth=7cm
-    }
-}{
-    \ifllncs{}{
+%% geometry
+\ifbeamer{}{
+    \ifdraft{
         \geometry{
-            a4paper,
-            left=1in,
-            right=1in,
+            paperwidth=25cm,
+            textheight=24cm,
+            heightrounded,
+            left=1cm,
+            right=8cm,
+            marginparwidth=7cm
+        }
+    }{
+        \ifllncs{}{
+            \geometry{
+                a4paper,
+                left=1in,
+                right=1in,
+            }
         }
     }
 }
@@ -46,13 +48,15 @@
         {}                    % Thm head spec
     
     \theoremstyle{break}
-    \newtheorem{theorem}{Theorem}[section]
+    \ifbeamer{}{
+        \newtheorem{theorem}{Theorem}[section]
+        \newtheorem{corollary}[theorem]{Corollary}
+        \newtheorem{lemma}[theorem]{Lemma}
+        \newtheorem{definition}[theorem]{Definition}
+        \newtheorem{example}{Example}[theorem]
+    }
     \newtheorem{remark}[theorem]{Remark}
-    \newtheorem{corollary}[theorem]{Corollary}
-    \newtheorem{lemma}[theorem]{Lemma}
-    \newtheorem{definition}[theorem]{Definition}
     \newtheorem{construction}[theorem]{Construction}
-    \newtheorem{example}{Example}[theorem]
     %\newtheorem{observation}{Observation}
     %\newtheorem{notation}[theorem]{Notation}
     %\crefname{observation}{observation}{observations}
@@ -67,8 +71,10 @@
 \let\claim\relax
 \declaretheorem[name=Claim]{claim}
 \crefname{claim}{Claim}{Claims}
-\declaretheorem[name=Fact]{fact}
-\crefname{fact}{Fact}{Facts}
+\ifbeamer{}{
+    \declaretheorem[name=Fact]{fact}
+    \crefname{fact}{Fact}{Facts}
+}
 \declaretheorem[name=Assumption]{assumption}
 \crefname{assumption}{Assumption}{Assumptions}
 
