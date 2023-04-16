@@ -37,9 +37,9 @@
 \ifnumeric
     \def\citestyle{numeric}
 \else
-    \def\citestyle{authoryear}
+    \def\citestyle{trad-alpha}
 \fi
-\usepackage[citestyle=\citestyle,style=numeric,giveninits=true,backend=\backend,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
+\usepackage[citestyle=\citestyle,style=\citestyle,giveninits=true,backend=\backend,isbn=false,doi=false,dateabbrev=false,url=false,natbib=true]{biblatex}
 \usepackage[inline]{enumitem}
 \usepackage{quoting}
 \usepackage[autostyle=true,german=quotes]{csquotes}
